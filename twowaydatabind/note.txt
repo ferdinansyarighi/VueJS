@@ -1,0 +1,5 @@
+Belajar Data Bind Vue JS
+
+Two Way Data Bind :
+Javascript -> HTML
+HTML -> Javascript
