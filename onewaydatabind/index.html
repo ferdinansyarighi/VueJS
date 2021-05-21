@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>One Way Data Binding</title>
+
+    <!-- Menyisipkan Vuejs dari CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+    <!-- elemen kontainer untuk aplikasi -->
+    <div id="app">
+        <!-- v-bind adalah penulisan di vue terbaru, dulu bisa dilakukan dengan <input type="text" value="{{ message }}"> -->
+        <input type="text" v-bind="message">
+        <p>{{ message }}</p>
+    </div>
+    
+    <!-- aplikasi Vue Hello -->
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "Hello World!"
+            }
+        })
+    </script>
+</body>
+</html>

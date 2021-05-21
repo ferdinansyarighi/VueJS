@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Two Way Data Binding</title>
+
+    <!-- Menyisipkan Vuejs dari CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+    <!-- text field -->
+    <div id="text">
+        <p>Textfield</p> 
+        <input v-model="message" placeholder="edit me">
+        <p>Message is: {{ message }}</p>
+    </div>
+
+    <!-- text area -->
+    <div id="textarea">
+        <p>Textarea</p> 
+        <textarea v-model="message" placeholder="add multiple lines"></textarea><br>
+        <span>Multiline message is:</span>
+        <p style="white-space: pre-line;">{{ message }}</p>
+    </div>
+
+    <!-- check box -->
+    <div id="cb">
+        <p>Check Box</p> 
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+    </div>
+
+    <!-- multi check box -->
+    <div id="multicb">
+        <p>Multi Check Box</p> 
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+    </div>    
+
+    <!-- radio button -->
+    <div id="rb">
+        <p>Radio Button</p> 
+        <input type="radio" id="one" value="One" v-model="picked">
+        <label for="one">One</label>
+        <br>
+        <input type="radio" id="two" value="Two" v-model="picked">
+        <label for="two">Two</label>
+        <br>
+        <span>Picked: {{ picked }}</span>
+    </div> 
+
+    <!-- dropdown list -->
+    <div id="dropdown">
+        <p>Dropdown List</p> 
+        <select v-model="selected">
+          <option disabled value="">-Select-</option>
+          <option>A</option>
+          <option>B</option>
+          <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>  
+    </div> 
+
+    <!-- text number -->
+    <div id="txt_num">
+      <p>Textfield only number and decimal</p>  
+      <input v-model="message" @keypress="isNumber($event)">
+    </div>
+
+    <script>
+        new Vue({
+            el: "#text",
+            data: {
+                message: ""
+            }
+        })
+
+        new Vue({
+            el: "#textarea",
+            data: {
+                message: ""
+            }
+        })
+
+        new Vue({
+            el: "#cb",
+            data: {
+                checked: "true"
+            }
+        })    
+
+        new Vue({
+          el: '#multicb',
+          data: {
+            checkedNames: []
+          }
+        })   
+
+        new Vue({
+          el: '#rb',
+          data: {
+            picked: ""
+          }
+        })
+
+        new Vue({
+          el: '#dropdown',
+          data: {
+            selected: ""
+          }
+        }) 
+
+        var placeholdernum = 1234.34;
+
+        new Vue({
+          el: '#txt_num',
+          data: {
+            message: placeholdernum
+          },
+          methods: {
+            isNumber: function(evt) {
+              evt = (evt) ? evt : window.event;
+              var charCode = (evt.which) ? evt.which : evt.keyCode;
+              if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                evt.preventDefault();;
+              } else {
+                return true;
+              }
+            }
+          }
+        });           
+    </script>
+</body>
+</html>
